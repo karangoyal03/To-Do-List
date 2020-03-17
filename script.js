@@ -4,6 +4,8 @@ window.onload=function(){
 
  function refreshlist(){
 
+  
+
     list.innerHTML=''
 
     // console.log(tasklist)
@@ -38,6 +40,8 @@ window.onload=function(){
              done.onclick=function(){
                  taskitem.done=true
                  if(taskitem.done==true){
+                    localStorage.tasks = JSON.stringify(tasklist);
+
                     spane.style.textDecoration="line-through"
                  }
                
@@ -83,11 +87,12 @@ window.onload=function(){
        
  
     }
-
+    
     if(localStorage.tasks){
         tasklist=JSON.parse(localStorage.getItem('tasks'))
     }
-  
+
+   
 
     refreshlist()
 
@@ -96,10 +101,25 @@ window.onload=function(){
         addnewtask()
     }
 
+    deletebtn.onclick=function(){
+        
+
+        //dry run krna h
+        
+            tasklist=tasklist.filter((taskitem)=>
+            {
+                return !taskitem.done
+
+            })
+        refreshlist()
+    }
+
 
     clearbtn.onclick=function(){
         localStorage.clear()
+        tasklist=[]
         refreshlist()
+        
     }
 
 
