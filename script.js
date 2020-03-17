@@ -96,6 +96,15 @@ window.onload=function(){
         addnewtask()
     }
 
+
+    clearbtn.onclick=function(){
+        localStorage.clear()
+        refreshlist()
+    }
+
+
+
+
     item.addEventListener('keyup',function(event){
         if(event.keyCode==13){
             addnewtask()
